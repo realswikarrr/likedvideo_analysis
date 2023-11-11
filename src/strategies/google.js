@@ -1,6 +1,7 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import User from "../db/Schema/User.js";
+// import revokeToken from "../middleware/revoketoken.js";
 
 passport.serializeUser(async function (user, done) {
   const userId = user._id.toString();
@@ -29,9 +30,9 @@ passport.use(
           email: profile._json.email,
         }).exec();
         if (userExists) {
+          //   revokeToken(accessToken);
           return done(null, userExists);
         } else {
-          console.log("insert user");
           var user = new User({
             access_token: accessToken,
             refresh_token: refreshToken,

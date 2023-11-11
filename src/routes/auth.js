@@ -10,6 +10,7 @@ router.get(
     scope: [
       "profile",
       "https://www.googleapis.com/auth/youtube.readonly",
+      "https://www.googleapis.com/auth/youtube",
       "email",
     ],
     accessType: "offline",
