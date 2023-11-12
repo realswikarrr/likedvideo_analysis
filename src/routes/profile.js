@@ -77,12 +77,6 @@ router.get(
             videoTags: item.snippet.tags || "",
             categoryId: item.snippet.categoryId || "",
           };
-          // return {
-          //   videoTitle: item.snippet.title,
-          //   channelTitle: item.snippet.channelTitle,
-          //   videoTags: item.snippet.tags,
-          //   categoryId: item.snippet.categoryId,
-          // };
         });
 
         try {
