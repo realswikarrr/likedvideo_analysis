@@ -1,11 +1,16 @@
 import mongoose from "mongoose";
 
+const videoDetailsChildSchema = new mongoose.Schema({
+  videoTitle: String,
+  channelTitle: String,
+  videoTags: [{ type: String }],
+  categoryId: String,
+});
+
 var videoDetailsSchema = new mongoose.Schema(
   {
-    videoTitle: String,
-    channelTitle: String,
-    videoTags: String,
-    categoryId: String,
+    userEmail: String,
+    data: [videoDetailsChildSchema],
   },
   { collection: "videoDetails" }
 );

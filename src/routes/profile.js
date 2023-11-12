@@ -3,7 +3,6 @@ import { google as googleApi } from "googleapis";
 import videoDetails from "../db/Schema/VideoDetails.js";
 
 import expressAsyncHandler from "express-async-handler";
-
 const router = Router();
 
 const OAuth2 = googleApi.auth.OAuth2;
@@ -80,18 +79,25 @@ router.get(
         });
 
         try {
-          for (const data of simplifiedData) {
-            const videoDetailsInstance = new videoDetails(data);
-            await videoDetailsInstance.save();
+          const userDetailsExists = await videoDetails
+            .find({ userEmail: req.user.email })
+            .exec();
+
+          if (userDetailsExists.length > 0) {
+            res.status(201).json({ message: "User Details Exists" });
+          } else {
+            const videoDetailsInstance = new videoDetails({
+              userEmail: req.user.email,
+              data: simplifiedData,
+            });
+
+            videoDetailsInstance.save();
+
+            res.status(200).json({ message: "Data Insertion Sucessfull" });
           }
         } catch (err) {
-          console.log("Individual insertions successful");
+          console.log("Individual insertions unsucessful", err);
         }
-
-        res.status(200).json({
-          message: "Data Received Success",
-          // data: simplifiedData,
-        });
       } catch (error) {
         console.log(error);
         res
