@@ -5,6 +5,7 @@ import connectDB from "./db/db.js";
 import session from "express-session";
 import authRoutes from "./routes/auth.js";
 import profileRoutes from "./routes/profile.js";
+import detailsRoute from "./routes/detail.js";
 
 import("./strategies/google.js");
 
@@ -22,6 +23,7 @@ async function bootstrap() {
 
   app.use("/api/auth", authRoutes);
   app.use("/api", profileRoutes);
+  app.use("/api", detailsRoute);
 
   try {
     app.listen(PORT, () => console.log(`Running on Port ${PORT}`));
