@@ -1,19 +1,11 @@
 import { Router } from "express";
 import { google as googleApi } from "googleapis";
 import videoDetails from "../db/Schema/VideoDetails.js";
-
+import userLogged from "../middleware/userlogged.js";
 import expressAsyncHandler from "express-async-handler";
 const router = Router();
 
 const OAuth2 = googleApi.auth.OAuth2;
-
-function userLogged(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    res.redirect("/api/auth/google");
-  }
-}
 
 router.get(
   "/profile",

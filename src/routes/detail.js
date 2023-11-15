@@ -2,16 +2,9 @@ import { Router } from "express";
 
 // import videoDetails from "../db/Schema/VideoDetails";
 import expressAsyncHandler from "express-async-handler";
+import userLogged from "../middleware/userlogged.js";
 
 const router = Router();
-
-function userLogged(req, res, next) {
-  if (req.isAuthenticated()) {
-    res.redirect("/api/mostWatchedChannel");
-  } else {
-    res.redirect("/api/auth/google");
-  }
-}
 
 router.get(
   "/mostWatchedChannel",

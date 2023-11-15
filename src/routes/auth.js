@@ -5,7 +5,7 @@ import passport from "passport";
 const router = Router();
 
 router.get(
-  "/google",
+  "/login",
   passport.authenticate("google", {
     scope: [
       "profile",
@@ -21,10 +21,20 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/api/profile",
+    successRedirect: "/api/auth/loggedIn",
     failureRedirect: "/",
   })
 );
+
+router.get("/loggedIn", (req, res) => {
+  res.render("loggedIn");
+  res.status(200);
+});
+
+router.get("/protectedRedirect", (req, res) => {
+  res.render("protected");
+  res.status(400);
+});
 
 router.get("/logout", (req, res) => {
   // Clear the user's session

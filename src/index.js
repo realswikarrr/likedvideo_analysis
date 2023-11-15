@@ -21,6 +21,13 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  app.set("view engine", "jade");
+
+  app.get("/", (req, res) => {
+    res.render("default");
+    res.status(200);
+  });
+
   app.use("/api/auth", authRoutes);
   app.use("/api", profileRoutes);
   app.use("/api", detailsRoute);
