@@ -6,6 +6,7 @@ import session from "express-session";
 import authRoutes from "./routes/auth.js";
 import profileRoutes from "./routes/profile.js";
 import detailsRoute from "./routes/detail.js";
+import cors from "cors";
 
 import("./strategies/google.js");
 
@@ -16,6 +17,8 @@ async function bootstrap() {
   const PORT = process.env.PORT;
 
   connectDB();
+
+  app.use(cors({ withCredentials: true }));
 
   app.use(session({ secret: "somesecret" }));
   app.use(passport.initialize());
