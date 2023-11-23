@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import axios from "axios";
 
-const loginHandler = () =>
+const loginHandler = async () =>
   window.open("http://localhost:3000/api/auth/login", "_self");
 
 export default function Home() {
