@@ -76,7 +76,8 @@ router.get(
             .exec();
 
           if (userDetailsExists.length > 0) {
-            res.status(201).json({ message: "User Details Exists" });
+            res.status(201);
+            res.redirect("http://localhost:3001/dashboard");
           } else {
             const videoDetailsInstance = new videoDetails({
               userEmail: req.user.email,
@@ -85,7 +86,9 @@ router.get(
 
             videoDetailsInstance.save();
 
-            res.status(200).json({ message: "Data Insertion Sucessfull" });
+            res.status(200);
+
+            res.redirect("http://localhost:3001/dashboard");
           }
         } catch (err) {
           console.log("Individual insertions unsucessful", err);

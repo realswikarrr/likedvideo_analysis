@@ -8,6 +8,31 @@ import categoryData from "../data/categoryData.js";
 const router = Router();
 
 router.get(
+  "/checkLoggedIn",
+  userLogged,
+  expressAsyncHandler(async (req, res) => {
+    console.log("Its Loggedd In");
+  })
+);
+
+router.get(
+  "/userDetails",
+  userLogged,
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const userDetails = {
+        email: req.user.email,
+        name: req.user.name,
+      };
+      res.status(200).json({ message: "User Details", data: userDetails });
+    } catch (err) {
+      res.status(400);
+      console.log(err);
+    }
+  })
+);
+
+router.get(
   "/mostWatchedChannel",
   userLogged,
   expressAsyncHandler(async (req, res) => {

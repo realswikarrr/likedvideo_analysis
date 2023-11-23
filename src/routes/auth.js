@@ -21,19 +21,13 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:3001/login",
+    successRedirect: "http://localhost:3001/dashboard",
     failureRedirect: "/",
   })
 );
 
-router.get("/loggedIn", (req, res) => {
-  res.render("loggedIn");
-  res.status(200);
-});
-
 router.get("/protectedRedirect", (req, res) => {
-  res.render("protected");
-  res.status(400);
+  res.status(400).json({ message: "You are not logged In" });
 });
 
 router.get("/logout", (req, res) => {
@@ -41,8 +35,7 @@ router.get("/logout", (req, res) => {
   req.logout(() => {
     // Additional logic after logout (if needed)
     // For example, you can redirect the user to a specific page after logout
-
-    res.redirect("/"); // Adjust the redirection URL as needed
+    // Adjust the redirection URL as needed
   });
 });
 

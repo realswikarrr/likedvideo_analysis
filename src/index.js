@@ -18,11 +18,17 @@ async function bootstrap() {
 
   connectDB();
 
-  app.use(cors({ withCredentials: true }));
+  app.use(
+    cors({
+      origin: "http://localhost:3001", // allow to server to accept request from different origin
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      credentials: true, // allow session cookie from browser to pass through
+    })
+  );
 
   app.use(session({ secret: "somesecret" }));
   app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(passport.session({ resave: true, saveUninitialized: true }));
 
   app.set("view engine", "jade");
 
