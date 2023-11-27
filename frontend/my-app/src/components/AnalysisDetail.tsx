@@ -21,8 +21,6 @@ const AnalysisDetail = ({ data1, newData }: any) => {
   const data = data1;
   const dataTwo = newData;
 
-  console.log("dataaa", data);
-
   let fakeLabel: any = [];
   let fakeData: any = [];
 

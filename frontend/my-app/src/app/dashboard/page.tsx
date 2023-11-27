@@ -1,18 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AnalysisDetail from "@/components/AnalysisDetail";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
+  const router = useRouter();
+
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [data, setData] = useState();
   const [data2, setData2] = useState();
-  const [gotData, setGotData] = useState(false);
-  const [gotData2, setGotData2] = useState(false);
 
   const fetchUserData = async () => {
     axios
@@ -34,7 +35,7 @@ const Dashboard = () => {
     axios.get("http://localhost:3000/api/auth/logout", {
       withCredentials: true,
     });
-    redirect("/");
+    router.push("/");
   };
 
   const handleAnalysis = () => {
@@ -44,7 +45,6 @@ const Dashboard = () => {
       })
       .then((res) => {
         setData(res.data.data);
-        setGotData(true);
       })
       .catch((err) => {
         console.log(err);
@@ -56,16 +56,11 @@ const Dashboard = () => {
       })
       .then((res) => {
         setData2(res.data.data);
-        setGotData2(true);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  console.log(data);
-  console.log(data2);
-  console.log(gotData, gotData2);
 
   return (
     <div className="flex  flex-col items-center justify-between p-24 gap-4">
