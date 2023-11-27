@@ -74,7 +74,10 @@ router.get(
     } catch (err) {
       res
         .status(200)
-        .json({ message: "Something went wrong while fetching the data", err });
+        .json({
+          message: "Something went wrong while fetching the data",
+          err: err,
+        });
     }
   })
 );

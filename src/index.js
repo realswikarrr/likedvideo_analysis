@@ -26,7 +26,9 @@ async function bootstrap() {
     })
   );
 
-  app.use(session({ secret: "somesecret" }));
+  app.use(
+    session({ secret: "somesecret", resave: true, saveUninitialized: true })
+  );
   app.use(passport.initialize());
   app.use(passport.session({ resave: true, saveUninitialized: true }));
 
