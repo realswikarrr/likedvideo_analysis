@@ -1,19 +1,54 @@
-## Youtube Video Analysis (WIP)
+## Youtube Video Analysis
 
-## WIP -- What is done till now ?
+## What is done till now ?
 
-    I have developed the backend for the project and currently working on the frontend
+    I have decided not to host this project online because it is the MVP that i
+    created to learn Node JS and it is not a complete project. I have attached some
+    screenshots of the project below to see the working of the project.
 
-### What is it ?
+## Screenshots
 
-    This is web app allows user to analyze their liked video on youtube. The analysis
-    includes the following:
+### Login Page
+
+    Just The Basic Login Page Which Implements Google OAuth2.0 and takes you
+    google sign in page.
+
+![Login Page](./screenshots/Login.png)
+
+### Logged In Page
+
+     This is the page where you can see the analysis of your liked videos and some
+     basic information related to the user
+
+![Logged In Page](./screenshots/LoggedIn.png)
+
+### Analysis Page
+
+    This is the page where you can see the analysis of your liked videos.
+    The analysis includes the following:
 
         * Most Liked Category
         * Most Watched Channel
 
-    This is the MVP for the project. The final product will include more analysis and
-    more features.
+![Analysis Page](./screenshots/Analysis1.png)
+![Analysis Page](./screenshots/Analysis2.png)
+
+## How does this work ?
+
+    This is a web app which uses the youtube API to get the liked videos of the user.
+    The app then analyzes the data and stores it in a database. The user can then
+    view the analysis based on the no of liked videos which is sent through
+    backend logic.
+
+### What is it ?
+
+    This is web app allows user to analyze their liked video on youtube.
+    The analysis includes the following:
+
+        * Most Liked Category
+        * Most Watched Channel
+
+    This is the MVP for the project.
 
 ### How to use it ?
 
@@ -21,15 +56,7 @@
     2. Click on the "Login with Google" button
     3. Click on the "Analyze" button
     4. Wait for the analysis to finish
-    5. Click on the "View Analysis" button
-    6. Enjoy the analysis
-
-### How does it work ?
-
-    1. The user logs in with their google account
-    2. The app gets the user's liked videos from the youtube API
-    3. The app analyzes the data and stores it in a database
-    4. The user can view the analysis
+    5. Enjoy the analysis
 
 ### How to run it locally ?
 
