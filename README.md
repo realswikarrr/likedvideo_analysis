@@ -6,6 +6,10 @@
     created to learn Node JS and it is not a complete project. I have attached some
     screenshots of the project below to see the working of the project.
 
+## Watch a short video about the project
+
+[![Youtube Video Analysis](https://static.vecteezy.com/system/resources/thumbnails/023/986/704/small/youtube-logo-youtube-logo-transparent-youtube-icon-transparent-free-free-png.png)](https://youtu.be/QXswvkLwlkM)
+
 ## Screenshots
 
 ### Login Page
