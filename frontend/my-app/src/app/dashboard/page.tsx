@@ -12,8 +12,8 @@ const Dashboard = () => {
 
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
-  const [data, setData] = useState();
-  const [data2, setData2] = useState();
+  const [analysisData, setAnalysisData] = useState();
+  const [newAnalysisData, setNewAnalysisData] = useState();
 
   const fetchUserData = async () => {
     axios
@@ -44,7 +44,7 @@ const Dashboard = () => {
         withCredentials: true,
       })
       .then((res) => {
-        setData(res.data.data);
+        setAnalysisData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -55,7 +55,7 @@ const Dashboard = () => {
         withCredentials: true,
       })
       .then((res) => {
-        setData2(res.data.data);
+        setNewAnalysisData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -91,7 +91,7 @@ const Dashboard = () => {
           LogOut
         </Button>
       </div>
-      {data && data2 ? <AnalysisDetail data1={data} newData={data2} /> : null}
+      {analysisData && newAnalysisData ? <AnalysisDetail data1={analysisData} newData={newAnalysisData} /> : null}
     </div>
   );
 };
