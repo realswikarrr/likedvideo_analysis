@@ -17,44 +17,54 @@ ChartJS.register(
   Legend
 );
 
-const AnalysisDetail = ({ data1, newData }: any) => {
-  const data = data1;
-  const dataTwo = newData;
+interface Props {
+  channelAnalysisData?: any;
+  categoryAnalysisData?: any;
+}
 
-  let fakeLabel: any = [];
-  let fakeData: any = [];
+const AnalysisDetail = ({
+  channelAnalysisData = {},
+  categoryAnalysisData = {},
+}: Props) => {
+  // const data = data1; // channelAnalysisData
+  // const dataTwo = newData; // categoryAnalysisData
 
-  let fakeLabel2: any = [];
-  let fakeData2: any = [];
+  const channelDataLabels: any = [];
+  const channelData: any = [];
 
-  for (const key in data) {
-    fakeLabel.push(key);
-    fakeData.push(data[key]);
+  const categoryDataLabels: any = [];
+  const categoryData: any = [];
+
+  for (const key in channelAnalysisData) {
+    channelDataLabels.push(key);
+    channelData.push(channelAnalysisData[key]);
   }
 
-  for (const key in dataTwo) {
-    fakeLabel2.push(key);
-    fakeData2.push(dataTwo[key]);
+  for (const key in categoryAnalysisData) {
+    categoryDataLabels.push(key);
+    categoryData.push(categoryAnalysisData[key]);
   }
 
-  const dataMake = {
-    labels: fakeLabel,
+  // channel Data
+  const finalChannelData = {
+    labels: channelDataLabels,
     datasets: [
       {
         label: "No of Liked Videos",
-        data: fakeData,
+        data: channelData,
         borderColor: "black",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
   };
 
-  const dataMake2 = {
-    labels: fakeLabel2,
+  // category Data
+  const finalCategoryData = {
+    labels: categoryDataLabels,
     datasets: [
       {
         label: "No of Liked Videos",
-        data: fakeData2,
+        data: categoryData,
         borderColor: "black",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
@@ -67,13 +77,13 @@ const AnalysisDetail = ({ data1, newData }: any) => {
         <h1 className="text-white mb-10">
           Most Watched Channel According To Likes
         </h1>
-        <Bar data={dataMake} className=" w-[1300px] h-96" />
+        <Bar data={finalChannelData} className=" w-[1300px] h-96" />
       </div>
       <div>
         <h1 className="text-white mb-10">
           Most Watched Category According To Likes
         </h1>
-        <Bar data={dataMake2} className=" w-[1300px] h-96" />
+        <Bar data={finalCategoryData} className=" w-[1300px] h-96" />
       </div>
     </div>
   );
