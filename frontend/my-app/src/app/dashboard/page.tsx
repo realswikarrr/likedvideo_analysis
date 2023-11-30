@@ -12,8 +12,10 @@ const Dashboard = () => {
 
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
-  const [analysisData, setAnalysisData] = useState();
-  const [newAnalysisData, setNewAnalysisData] = useState();
+  // const [analysisData, setAnalysisData] = useState();
+  // const [newAnalysisData, setNewAnalysisData] = useState();
+  const [channelAnalysisData, setChannelAnalysisData] = useState();
+  const [categoryAnalysisData, setCategoryAnalysisData] = useState();
 
   const fetchUserData = async () => {
     axios
@@ -23,7 +25,7 @@ const Dashboard = () => {
         setUserName(res.data.data.name);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error while fetching user data: ", err);
       });
   };
 
@@ -44,10 +46,10 @@ const Dashboard = () => {
         withCredentials: true,
       })
       .then((res) => {
-        setAnalysisData(res.data.data);
+        setChannelAnalysisData(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error while handling Channel analysis data: ", err);
       });
 
     axios
@@ -55,10 +57,10 @@ const Dashboard = () => {
         withCredentials: true,
       })
       .then((res) => {
-        setNewAnalysisData(res.data.data);
+        setCategoryAnalysisData(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error while handling Category analysis data: ", err);
       });
   };
 
@@ -91,7 +93,12 @@ const Dashboard = () => {
           LogOut
         </Button>
       </div>
-      {analysisData && newAnalysisData ? <AnalysisDetail data1={analysisData} newData={newAnalysisData} /> : null}
+      {channelAnalysisData && categoryAnalysisData ? (
+        <AnalysisDetail
+          channelAnalysisData={channelAnalysisData}
+          categoryAnalysisData={categoryAnalysisData}
+        />
+      ) : null}
     </div>
   );
 };
